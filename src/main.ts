@@ -24,8 +24,8 @@ const state:{goods:good[],cart:cartItem[] } ={
     cart: [],
   };
   
-  const groceryboard:any = document.querySelector(".item-list.store--item-list");
-  const ulincart:any = document.querySelector(".cart--item-list");
+  const groceryboard = document.querySelector(".item-list.store--item-list");
+  const ulincart= document.querySelector(".cart--item-list");
   
   function creategrocerielists() {
     for (const good of state.goods) {
@@ -34,6 +34,7 @@ const state:{goods:good[],cart:cartItem[] } ={
   }
   
   function createsingleitem(good:good) {
+    if(groceryboard===null){return}
     const grocerylist = document.createElement("li");
     const divEl = document.createElement("div");
     divEl.setAttribute("class", "store--item-icon");
@@ -75,7 +76,8 @@ const state:{goods:good[],cart:cartItem[] } ={
   }
   
   function rendercarts() {
-    ulincart.innerText = "";
+    if( ulincart===null){return}
+    ulincart.textContent = "";
     for (const item of state.cart) {
       renderitemincart(item);
     }
@@ -83,6 +85,7 @@ const state:{goods:good[],cart:cartItem[] } ={
   }
   
   function renderitemincart(cartItem:cartItem) {
+    if( ulincart===null){return}
     const newgood:good|undefined = state.goods.find(function (good) {
       return good.id === cartItem.id;
     });
